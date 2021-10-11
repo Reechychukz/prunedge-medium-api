@@ -5,7 +5,7 @@ namespace Infrastucture.Data.DbContext
     public class AppDbContext: Microsoft.EntityFrameworkCore.DbContext
     {
         /// <summary>
-        /// Dbcontext comment
+        /// Dbcontextm comment
         /// </summary>
         /// <param name="options"></param>
         public AppDbContext(DbContextOptions options) : base(options)
