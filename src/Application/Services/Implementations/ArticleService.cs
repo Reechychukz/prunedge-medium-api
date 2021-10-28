@@ -19,18 +19,17 @@ namespace Application.Services.Implementations
     {
         private readonly IMapper _mapper;
         public static IWebHostEnvironment _webHostEnvironment;
-        private readonly IRestErrorLocalizerService _localizer;
         private readonly IRepository<Article> _articleRepository;
         private readonly IRepository<FileUpload> _fileUploadRepository;
         public ArticleService(IMapper mapper,
             IWebHostEnvironment webHostEnvironment,
-            IRestErrorLocalizerService localizer,
+            
             IRepository<Article> articleRepository,
             IRepository<FileUpload> fileUploadRepository)
         {
             _mapper = mapper;
             _articleRepository = articleRepository;
-            _localizer = localizer;
+            //_localizer = localizer;
             _webHostEnvironment = webHostEnvironment;
             _fileUploadRepository = fileUploadRepository;
         }
@@ -59,7 +58,7 @@ namespace Application.Services.Implementations
 
             var response = _mapper.Map<ArticleDTO>(article);
 
-            return new SuccessResponse<ArticleDTO>
+            return new SuccessResponse<ArticleDTO>()
             {
                 //Message = _localizer.GetLocalizedString(ERestError.CreationSuccessResponse.ToString()),
                 Data = response
