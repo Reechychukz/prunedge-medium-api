@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Localization;
+﻿using Application.Helpers;
+using Microsoft.Extensions.Localization;
 
 namespace Application.Resources
 {
-    public interface IValidationLocalizerService
+    public interface IValidationLocalizerService : IAutoDependencyService
     {
         LocalizedString GetLocalizedString(string key);
     }
