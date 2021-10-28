@@ -11,6 +11,7 @@ namespace Domain.Entities
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Story { get; set; }
+        public string Category { get; set; }
         public string documentUrl { get; set; }
         public EArticleStatus Status { get; set; } = EArticleStatus.DRAFT;
         public IEnumerable<FileUpload> FileUploads { get; set; }

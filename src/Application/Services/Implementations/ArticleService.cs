@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.Enums;
 using Application.Helpers;
 using Application.Resources;
 using Application.Services.Interfaces;
@@ -7,9 +8,11 @@ using Domain.Entities;
 using Domain.ViewModels;
 using Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -61,7 +64,7 @@ namespace Application.Services.Implementations
 
             return new SuccessResponse<ArticleDTO>
             {
-                //Message = _localizer.GetLocalizedString(ERestError.CreationSuccessResponse.ToString()),
+                Message = _localizer.GetLocalizedString(ERestError.CreationSuccessResponse.ToString()),
                 Data = response
             };
         }
@@ -121,6 +124,22 @@ namespace Application.Services.Implementations
                 uploadedfileNames.Add(uploadedFileName);
             }
             return uploadedfileNames;
+        }
+        /// <summary>
+        /// Service method to add multiple files
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<SuccessResponse<List<string>>> GetArticleCategory(ArticleCategoryDTO request)
+        {
+            var categories = await _articleRepository.Get(x => x.Category.Contains(request.Search))
+                .Select(x => x.Category).Distinct().ToListAsync();
+
+            return new SuccessResponse<List<string>>
+            {
+                Message = _localizer.GetLocalizedString(ERestError.RetrievalSuccessResponse.ToString()),
+                Data = categories
+            };
         }
     }
 }

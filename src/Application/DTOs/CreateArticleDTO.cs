@@ -10,5 +10,10 @@ namespace Application.DTOs
     {
         public string Title { get; set; }
         public string Story { get; set; }
+        public string Category { get; set; }
+    }
+    public class ArticleCategoryDTO
+    {
+        public string Search { get; set; }
     }
 }

@@ -64,6 +64,10 @@ namespace Infrastructure.Repositories.Implementations
 
             return entity;
         }
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _context.Set<TEntity>().Where(predicate);
+        }
 
         public void Remove(TEntity entity)
         {

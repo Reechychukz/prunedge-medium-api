@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace Infrastructure.Repositories.Interfaces
         Task<TEntity> SingleOrDefaultNoTracking(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> FirstOrDefaultNoTracking(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
         void UpdateRange(IEnumerable<TEntity> entity);
         Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate);
     }
