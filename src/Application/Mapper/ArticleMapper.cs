@@ -8,8 +8,8 @@ namespace Application.Mapper
     {
         public ArticleMapper()
         {
-            CreateMap<ArticleDTO, Article>();
             CreateMap<CreateArticleDTO, Article>();
+            CreateMap<Article, ArticleDTO>();
         }
     }
 }
