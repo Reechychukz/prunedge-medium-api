@@ -3,6 +3,7 @@ using Application.Helpers;
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,6 +33,19 @@ namespace API.Controllers
         {
             var result = await _articleService.CreateArticleDraft(model);
             return Ok(result);
+        }
+        /// <summary>
+        /// Endpoint to get article categories
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpGet("categories")]
+        [ProducesResponseType(typeof(SuccessResponse<List<string>>), 200)]
+        public async Task<IActionResult> GetCategory([FromQuery] ArticleCategoryDTO request)
+        {
+            var response = await _articleService.GetArticleCategory(request);
+
+            return Ok(response);
         }
     }
 }
